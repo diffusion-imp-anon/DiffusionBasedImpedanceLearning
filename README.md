@@ -37,7 +37,7 @@ We recommend creating a conda environment using the provided `environment.yml` f
 
 ```bash
 # Clone the repository
-git clone https://github.com/diffusion-imp-anon/Diffusion-Based-Impedance-Learning.git
+git clone https://github.com/diffusion-imp-anon/DiffusionBasedImpedanceLearning.git
 cd DiffusionBasedImpedanceAdaptation
 
 # Create conda environment
