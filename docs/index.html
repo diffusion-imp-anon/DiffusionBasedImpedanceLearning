@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Diffusion-Based Impedance Learning</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .top-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .top-logos img {
+      max-height: 80px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .strokeai-banner {
+      max-width: 100%;
+      height: auto;
+      margin: 40px 0;
+    }
+
+    h1 {
+      /* color: #003366; */
+      color: #8A1C2B;
+      font-size: 2.4em;
+      font-weight: 700;
+      margin-bottom: 0.3em;
+    }
+
+    h2 {
+      margin-top: 3em;
+      /* color: #003366; */
+      color: #8A1C2B;
+    }
+
+    .authors, .affiliations, p {
+      font-size: 1.05em;
+      line-height: 1.6;
+      color: #222;
+    }
+
+    .badges {
+      margin: 20px 0;
+    }
+
+    .badges a {
+      margin: 0 10px;
+      display: inline-block;
+    }
+
+    .wip {
+      margin: 30px auto;
+      max-width: 100px;
+    }
+
+    .video-block {
+      text-align: left;
+      margin-top: 30px;
+    }
+
+    .video-block strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .video-block p {
+      margin-top: 0;
+      font-size: 0.95em;
+      color: #444;
+    }
+
+    .youtube-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      margin-top: 15px;
+      margin-bottom: 25px;
+    }
+
+    .youtube-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <h1>Diffusion-Based Impedance Learning for Contact-Rich Manipulation Tasks</h1>
+
+    <div class="authors">
+      Undisclosed authors for double-anonymous review
+    </div>
+    
+
+    <div class="badges">    
+      <!-- GitHub -->
+      <a href="https://github.com/diffusion-imp-anon/Diffusion-Based-Impedance-Learning" target="_blank" rel="noopener noreferrer">
+        <img src="https://img.shields.io/badge/GitHub-Repo-181717?logo=github" alt="GitHub Repository">
+      </a>
+    </div>
+
+    <h2>Abstract</h2>
+    <p>
+    Learning methods excel at motion generation in the information domain but are not primarily designed for physical interaction in the energy domain. Impedance Control shapes physical interaction but requires task-aware tuning by selecting feasible impedance parameters. We present Diffusion-Based Impedance Learning, a framework that combines both domains. A Transformer-based Diffusion Model with cross-attention to external wrenches reconstructs a simulated Zero-Force Trajectory (sZFT). This captures both translational and rotational task-space behavior. For rotations, we introduce a novel SLERP-based quaternion noise scheduler that ensures geometric consistency. The reconstructed sZFT is then passed to an energy-based estimator that updates stiffness and damping parameters. A directional rule is applied that reduces impedance along non-task axes while preserving rigidity along task directions.
+    Training data were collected for a parkour scenario and robotic-assisted therapy tasks using teleoperation with Apple Vision Pro. With only tens of thousands of samples, the model achieved sub-millimeter positional accuracy and sub-degree rotational accuracy. Its compact model size enabled real-time torque control and autonomous stiffness adaptation on a KUKA LBR iiwa robot. The controller achieved smooth parkour traversal within force and velocity limits and 30/30 success rates for cylindrical, square, and star peg insertions without any peg-specific demonstrations in the training data set.
+    All code for the Transformer-based Diffusion Model, the robot controller, and the Apple Vision Pro telemanipulation framework is publicly available. These results mark an important step towards Physical AI, fusing model-based control for physical interaction with learning-based methods for trajectory generation.
+
+    </p>
+
+    <h2 id="data">Teleoperated Data Collection for Model Training</h2>
+
+
+    
+
+        <div class="video-block">
+      <strong>1. Parkour Trajectory Demonstration via Teleoperation</strong>
+      <p>Teleoperation is used to guide the robot through physical obstacles, enabling the model to learn how interaction forces vary with pose and context.</p>
+      <div class="youtube-wrapper" style="aspect-ratio: 4 / 3;">
+        <iframe src="https://www.youtube.com/embed/A7IriNSKP2w" allowfullscreen></iframe>
+      </div>
+    </div>
+
+
+    <div class="video-block">
+      <strong>2. Human-Guided Upper Limb Therapy Demonstration via Apple Vision Pro</strong>
+      <p>Teleoperation is used to record additionally data of patient movements with varying levels of support, enabling the model to learn the dynamic relationship between force and motion.
+        More about the work regarding Physics-Informed Diffusion for Physical Therapist-Like Robot Assistance can be found here: <a href="https://strokeairobotics.github.io/StrokeAI" target="_blank">https://strokeairobotics.github.io/StrokeAI</a>
+      </p>
+      <div class="youtube-wrapper" style="aspect-ratio: 4 / 3;">
+        <iframe src="https://www.youtube.com/embed/AopwOd02GPs" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    
+<h2 id="deployment">Model Deployment in Real-World Contact Tasks</h2>
+
+<!-- Row 1: Two videos side by side -->
+<div class="video-block">
+  <strong>Model Deployment in a Parkour Scenario</strong>
+  <p>
+These videos compare the robot using constant stiffness parameters (left) versus diffusion-based adaptive impedance (right).
+With constant stiffness, the robot fails to complete the task due to speed and force limitations.
+With adaptive impedance, the robot successfully completes the task, smoothly traversing all obstacles.
+  </p>
+  <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 30px;">
+    <div style="flex: 1 1 45%; max-width: 45%;">
+      <div class="youtube-wrapper">
+        <iframe src="https://www.youtube.com/embed/z31YdLfGt0o" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div style="flex: 1 1 45%; max-width: 45%;">
+      <div class="youtube-wrapper">
+        <iframe src="https://www.youtube.com/embed/bG_JWL829WA" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Row 2: Three videos side by side -->
+<div class="video-block">
+  <strong>Model Deployment in peg-in-hole tasks.</strong>
+  <p>
+The robot performs peg insertion tasks with cylindrical, square, and star-shaped pegs using constant stiffness parameters.
+The cylindrical peg was inserted successfully in 30/30 trials, the square peg in 4/30 trials, and the star peg in none of the 30 trials. 
+These trials highlight the difficulty of choosing feasible fixed impedance in contact-rich environments.
+  </p>
+  <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 30px;">
+    <div style="flex: 1 1 30%; max-width: 30%;">
+      <div class="youtube-wrapper">
+        <iframe src="https://www.youtube.com/embed/rra06_MiaIk" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div style="flex: 1 1 30%; max-width: 30%;">
+      <div class="youtube-wrapper">
+        <iframe src="https://www.youtube.com/embed/0DB_RJmXkds" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div style="flex: 1 1 30%; max-width: 30%;">
+      <div class="youtube-wrapper">
+        <iframe src="https://www.youtube.com/embed/IymvYZjQl9g" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Row 3: Three more videos side by side -->
+<div class="video-block">
+  <strong>Robustness Across Repeated Trials</strong>
+  <p>
+Diffusion-Based Impedance Learning achieved a 30/30 success rate for all three peg types. These results highlight that with 
+increasing insertion complexity, more advanced strategies such as our diffusion-based approach become essential. The outcome is 
+particularly notable because the training data included only parkour and upper-limb rehabilitation data and no peg-in-hole demonstrations.
+  </p>
+  <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+    <div style="flex: 1 1 30%; max-width: 30%;">
+      <div class="youtube-wrapper">
+        <iframe src="https://www.youtube.com/embed/zxOhxu6mGrI" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div style="flex: 1 1 30%; max-width: 30%;">
+      <div class="youtube-wrapper">
+        <iframe src="https://www.youtube.com/embed/xZFoi0Rz0UQ" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div style="flex: 1 1 30%; max-width: 30%;">
+      <div class="youtube-wrapper">
+        <iframe src="https://www.youtube.com/embed/h-n9hNcB0G4" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</div>
