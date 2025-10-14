@@ -2,7 +2,7 @@
 
 **Undisclosed authors for double-anonymous review**  
 
-🔗 [Project Website](https://diffusion-imp-anon.github.io/Diffusion-Based-Impedance-Learning/)  
+🔗 [Project Website](https://diffusion-imp-anon.github.io/DiffusionBasedImpedanceLearning/)  
 
 ---
 
